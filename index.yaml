@@ -1,0 +1,67 @@
+apiVersion: v1
+entries:
+  keeper-gateway:
+  - annotations:
+      artifacthub.io/category: security
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "Probes now use exec (keeper-gateway health-check CLI) instead of tcpSocket for reliable health checking"
+        - kind: changed
+          description: "Security context with SYS_ADMIN, SYS_CHROOT, SETUID, SETGID capabilities and Unconfined seccomp for CEF/RBI support"
+        - kind: changed
+          description: "AppArmor set to unconfined via pod annotation (K8s <1.30 compatible) for CEF namespace isolation"
+        - kind: changed
+          description: "Health check binds to 127.0.0.1 (exec probes run inside container, more secure)"
+        - kind: changed
+          description: "Increased default resources: 4Gi memory limit (was 2Gi), 1Gi request (was 512Mi), 4 CPU limit (was 2)"
+        - kind: changed
+          description: "Increased default /dev/shm to 2Gi (was 256Mi) for RBI/Chromium sessions"
+        - kind: added
+          description: "/etc/guacamole emptyDir volume for guacd autofill rules configuration"
+        - kind: added
+          description: "Security hardening documentation for AppArmor on Debian/Ubuntu nodes"
+        - kind: added
+          description: "Native Kubernetes appArmorProfile rendering for Kubernetes 1.30+ while preserving legacy AppArmor annotations"
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://docs.keeper.io/en/keeperpam/privileged-access-manager/getting-started/gateways
+        - name: Docker Hub
+          url: https://hub.docker.com/r/keeper/gateway
+        - name: Support
+          url: https://www.keepersecurity.com/support.html
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.8.0
+    created: "2026-05-01T12:27:40.289693336-04:00"
+    description: Keeper PAM Gateway - Remote access, secret rotation, and discovery
+      for Keeper Security
+    digest: ff031d3d6b334a45a8621137c0136dddf35f00c75e67f3614b551fd3b3612d7a
+    home: https://www.keepersecurity.com
+    icon: https://keepersecurity.com/vault/images/keeper_icons/icon_rounded_256.png
+    keywords:
+    - keeper
+    - pam
+    - gateway
+    - remote-access
+    - rdp
+    - ssh
+    - vnc
+    - secret-rotation
+    - discovery
+    - security
+    - privileged-access
+    kubeVersion: '>=1.25.0-0'
+    maintainers:
+    - email: pam@keepersecurity.com
+      name: Keeper Security
+      url: https://www.keepersecurity.com
+    name: keeper-gateway
+    sources:
+    - https://github.com/Keeper-Security/helm-charts
+    type: application
+    urls:
+    - https://freimer.github.io/keeper-security-helm-charts/keeper-gateway-0.2.1-rc1.tgz
+    version: 0.2.1-rc1
+generated: "2026-05-01T12:27:40.288350955-04:00"
